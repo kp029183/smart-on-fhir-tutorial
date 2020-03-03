@@ -17244,7 +17244,6 @@ BBClient.ready = function(input, callback, errback){
     }
 
     var ret = FhirClient(fhirClientParams);
-    console.log("ret17247", ret);
     ret.state = JSON.parse(JSON.stringify(state));
     ret.tokenResponse = JSON.parse(JSON.stringify(tokenResponse));
     args.callback(ret);
@@ -17400,11 +17399,9 @@ BBClient.authorize = function(params, errback){
       if (BBClient.settings.fullSessionStorageSupport) { 
         sessionStorage[state] = JSON.stringify(params);
         sessionStorage.tokenResponse = JSON.stringify({state: state});
-	console.log("State 17402", params);
       } else {
         var combinedObject = $.extend(true, params, { 'tokenResponse' : {state: state} });
         sessionStorage[state] = JSON.stringify(combinedObject);
-	console.log("State 17406", combinedObject);
       }
 
       window.location.href = client.redirect_uri + "?state="+encodeURIComponent(state);
@@ -17413,7 +17410,6 @@ BBClient.authorize = function(params, errback){
     
     sessionStorage[state] = JSON.stringify(params);
 
-    console.log("State17415", state);
     console.log("sending client reg", params.client);
 
     var redirect_to=params.provider.oauth2.authorize_uri + "?" + 
